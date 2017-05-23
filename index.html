@@ -95,7 +95,14 @@
         document.getElementById("total").style.color = 'red';
       };
       if (done < 5) setTimeout(fillIn, 50);
-      else setTimeout(fillIn, 10000);
+      else setTimeout(function() {
+        getRate('btc')
+        getRate('eth');
+        getRate('xmr');
+        getRate('xlm');
+        getRate('xrp');
+        fillIn();
+      }, 1000);
     }
     fillIn();
   </script>
