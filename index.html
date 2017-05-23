@@ -7,11 +7,13 @@
   <title>AIRY</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="container">
+    <h4><br/>I invested CHF1000 in cryptocurencies on the morning of June 23rd, 2017. Let's see how it went :</h4>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -39,6 +41,10 @@
     <h1 style="text-align: center" id="total"></h1>
   </div>
 
+  <h4 style="position: absolute; bottom: 0px; text-align: right; width: 95%;">
+      <a href="http://github.com/wakeupcoffee/amirichyet">code</a> |
+      <a href="http://louismerlin.net">me</a>
+    </h4>
   <script>
     var rates = {};
     var amounts = {
@@ -76,10 +82,10 @@
       Object.keys(rates).forEach(function(k) {
         document.getElementById(k).innerHTML =
           "<td>" + k.toUpperCase() + "</td>" +
-          "<td>" + rates[k] + "</td>" +
-          "<td>" + amounts[k] + "</td>" +
+          "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
+          "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
           "<td>205.82</td>" +
-          "<td>" + rates[k] * amounts[k] + "</td>";
+          "<td>" + (rates[k] * amounts[k]).toString().slice(0, 6) + "</td>";
         sum += rates[k] * amounts[k];
         if (rates[k] > 0) done++
       });
