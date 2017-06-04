@@ -1,0 +1,159 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>AIRY</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Curency</th>
+          <th>Quantity</th>
+          <th>Current Rate [€]</th>
+          <th>Original Value [€]</th>
+          <th>Current Value [€]</th>
+          <th>Profit/Loss [€]</th>
+          <th>Profit/Loss [%]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="btc">
+        </tr>
+        <tr id="eth">
+        </tr>
+        <tr id="dash">
+        </tr>
+        <tr id="xlm">
+        </tr>
+        <tr id="xrp">
+        </tr>
+        <tr id="bat">
+        </tr>
+      </tbody>
+    </table>
+
+    <h1 style="text-align: center" id="total"></h1>
+    <h4 style="text-align: center" id="investment"></h4>
+  </div>
+
+  <div style="bottom: 0px; text-align: right; width: 95%;">
+      <a href="http://github.com/wakeupcoffee/amirichyet">code</a> |
+      © Louis Merlin
+  </div>
+  <script>
+    var rates = {};
+    var investment = 3500;
+    var amounts = {
+      "btc": 0.00018,
+      "eth": 53.9961,
+      "dash": 5.029182,
+      "xlm": 5425,
+      "xrp": 4058.27338,
+      "bat": 7020.53872442
+    };
+    var originalRates = {
+      "btc": 718.72392,
+      "eth": 12.5007618,
+      "dash": 133.5000,
+      "xlm": 0.0496,
+      "xrp": 0.2800,
+      "bat": 0.1908863
+    };
+    var originalValues = {
+      "btc": amounts["btc"] * originalRates["btc"],
+      "eth": amounts["eth"] * originalRates["eth"],
+      "dash": amounts["dash"] * originalRates["dash"],
+      "xlm": amounts["xlm"] * originalRates["xlm"],
+      "xrp": amounts["xrp"] * originalRates["xrp"],
+      "bat": amounts["bat"] * originalRates["bat"]
+    }
+    var totalOriginalValue = 0;
+
+    for (var currency in originalValues) {
+      if (originalValues.hasOwnProperty(currency)) {
+        totalOriginalValue += originalValues[currency];
+      }
+    }
+
+    getRate = function(pair) {
+      var req = new XMLHttpRequest();
+      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
+      req.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+          var data = JSON.parse(this.response);
+          rates[pair] = data.ticker.price;
+        } else {
+          console.log("We reached our target server, but it returned an error");
+        }
+      };
+      req.onerror = function() {
+        console.log("There was a connection error of some sort");
+      };
+      req.send();
+    }
+    getRate('btc')
+    getRate('eth');
+    getRate('dash');
+    getRate('xlm');
+    getRate('xrp');
+    getRate('bat');
+    fillIn = function() {
+      sum = 0;
+      done = 0;
+      Object.keys(rates).forEach(function(k) {
+        var oriWorth = originalRates[k] * amounts[k];
+        var curWorth = rates[k] * amounts[k];
+        var won = (curWorth)-(oriWorth);
+        var perWon = won/oriWorth*100;
+        document.getElementById(k).innerHTML =
+          "<td>" + k.toUpperCase() + "</td>" +
+          "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
+          "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
+          "<td>" + oriWorth.toFixed(2).toString() + "</td>" +
+          "<td>" + curWorth.toFixed(2).toString() + "</td>" +
+          "<td>" + won.toFixed(2).toString() + "</td>" +
+          "<td style=\"color:" + (won >= 0 ? "green" : "red") + "\">"
+          + (amounts[k] >  0 ? perWon.toFixed(2).toString() : "0") + "%" + "</td>";
+        sum += rates[k] * amounts[k];
+        if (rates[k] > 0) done++
+      });
+      var totalWorth = sum;
+      sum -= investment;
+      sum = parseFloat(Math.round(sum * 100) / 100).toFixed(2);
+      if (sum > 0) {
+        document.title = "+ " + sum + "€";
+        document.getElementById("total").innerHTML = "+ " + sum + "€";
+        document.getElementById("total").style.color = 'green';
+      } else {
+        document.title = "- " + (-sum) + "€";
+        document.getElementById("total").innerHTML = "- " + (-sum) + "€";
+        document.getElementById("total").style.color = 'red';
+      };
+      document.getElementById("investment").innerHTML = "Total investment : "
+      + investment.toFixed(0).toString() + "€ | Current worth : "
+      + totalWorth.toFixed(0).toString() + "€";
+      if (done < 5) setTimeout(fillIn, 50);
+      else setTimeout(function() {
+        getRate('btc')
+        getRate('eth');
+        getRate('dash');
+        getRate('xlm');
+        getRate('xrp');
+        getRate('bat');
+        fillIn();
+      }, 1000);
+    }
+    fillIn();
+  </script>
+</body>
+
+</html>
