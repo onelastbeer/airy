@@ -51,22 +51,22 @@
   </div>
   <script>
     var rates = {};
-    var investment = 3500;
+    var investment = 2000;
     var amounts = {
-      "btc": 0.00018,
-      "eth": 54.01296,
-      "dash": 1.99276,
-      "xlm": 5425,
-      "xrp": 1058.27338,
-      "bat": 11474.01351539
+      "btc": 0,
+      "eth": 8.72481,
+      "dash": 0,
+      "xlm": 0,
+      "xrp": 0,
+      "bat": 0
     };
     var originalRates = {
-      "btc": 718.72392,
-      "eth": 12.5007618,
-      "dash": 133.5000,
-      "xlm": 0.0496,
-      "xrp": 0.2800,
-      "bat": 0.215192686
+      "btc": ,
+      "eth": 229.1,
+      "dash": 0,
+      "xlm": 0,
+      "xrp": 0,
+      "bat": 0
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
@@ -116,7 +116,7 @@
         var perWon = won/oriWorth*100;
         document.getElementById(k).innerHTML =
           "<td>" + k.toUpperCase() + "</td>" +
-          "<td>" + amounts[k].toString().slice(0, 7) + "</td>" +
+          "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
           "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
           "<td>" + oriWorth.toFixed(2).toString() + "</td>" +
           "<td>" + curWorth.toFixed(2).toString() + "</td>" +
