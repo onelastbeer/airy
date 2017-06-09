@@ -38,6 +38,8 @@
         </tr>
         <tr id="bat">
         </tr>
+        <tr id="icn">
+        </tr>
       </tbody>
     </table>
 
@@ -54,11 +56,12 @@
     var investment = 2400;
     var amounts = {
       "btc": 0.0000317942,
-      "eth": 4.3667268,
+      "eth": 3.6467168,
       "dash": 0,
       "xlm": 0,
       "xrp": 0,
-      "bat": 4909.408
+      "bat": 4909.408,
+      "icn": 100
     };
     var originalRates = {
       "btc": 2163.44,
@@ -66,7 +69,8 @@
       "dash": 0,
       "xlm": 0,
       "xrp": 0,
-      "bat": 0.265570487
+      "bat": 0.265570487,
+      "icn": 1.6848234
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
@@ -106,6 +110,7 @@
     getRate('xlm');
     getRate('xrp');
     getRate('bat');
+    getRate('icn');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -149,6 +154,7 @@
         getRate('xlm');
         getRate('xrp');
         getRate('bat');
+        getRate('icn');
         fillIn();
       }, 1000);
     }
