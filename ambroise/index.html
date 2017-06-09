@@ -38,6 +38,8 @@
         </tr>
         <tr id="bat">
         </tr>
+        <tr id="icn">
+        </tr>
       </tbody>
     </table>
 
@@ -56,17 +58,19 @@
       "btc": 0.00018,
       "eth": 54.01296,
       "dash": 1.99276,
-      "xlm": 5425,
+      "xlm": 0,
       "xrp": 1058.27338,
-      "bat": 11474.01351539
+      "bat": 11474.01351539,
+      "bat": 131.58425
     };
     var originalRates = {
       "btc": 718.72392,
       "eth": 12.5007618,
       "dash": 133.5000,
-      "xlm": 0.0496,
+      "xlm": 0,
       "xrp": 0.2800,
-      "bat": 0.215192686
+      "bat": 0.215192686,
+      "icn": 1.272133
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
@@ -74,7 +78,8 @@
       "dash": amounts["dash"] * originalRates["dash"],
       "xlm": amounts["xlm"] * originalRates["xlm"],
       "xrp": amounts["xrp"] * originalRates["xrp"],
-      "bat": amounts["bat"] * originalRates["bat"]
+      "bat": amounts["bat"] * originalRates["bat"],
+      "icn": amounts["icn"] * originalRates["icn"]
     }
     var totalOriginalValue = 0;
 
@@ -106,6 +111,7 @@
     getRate('xlm');
     getRate('xrp');
     getRate('bat');
+    getRate('icn');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -116,7 +122,7 @@
         var perWon = won/oriWorth*100;
         document.getElementById(k).innerHTML =
           "<td>" + k.toUpperCase() + "</td>" +
-          "<td>" + amounts[k].toString().slice(0, 7) + "</td>" +
+          "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
           "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
           "<td>" + oriWorth.toFixed(2).toString() + "</td>" +
           "<td>" + curWorth.toFixed(2).toString() + "</td>" +
@@ -149,6 +155,7 @@
         getRate('xlm');
         getRate('xrp');
         getRate('bat');
+        getRate('icn');
         fillIn();
       }, 1000);
     }
