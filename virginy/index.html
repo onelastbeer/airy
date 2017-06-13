@@ -18,6 +18,7 @@
         <tr>
           <th>Curency</th>
           <th>Quantity</th>
+          <th>Orginal Rate [€]</th>
           <th>Current Rate [€]</th>
           <th>Original Value [€]</th>
           <th>Current Value [€]</th>
@@ -29,12 +30,6 @@
         <tr id="btc">
         </tr>
         <tr id="eth">
-        </tr>
-        <tr id="dash">
-        </tr>
-        <tr id="xlm">
-        </tr>
-        <tr id="xrp">
         </tr>
         <tr id="bat">
         </tr>
@@ -135,6 +130,7 @@
         document.getElementById(k).innerHTML =
           "<td>" + k.toUpperCase() + "</td>" +
           "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
+          "<td>" + originalRates[k].toString().slice(0, 6) + "</td>" +
           "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
           "<td>" + oriWorth.toFixed(2).toString() + "</td>" +
           "<td>" + curWorth.toFixed(2).toString() + "</td>" +
