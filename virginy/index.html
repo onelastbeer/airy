@@ -40,6 +40,8 @@
         </tr>
         <tr id="icn">
         </tr>
+        <tr id="wings">
+        </tr>
       </tbody>
     </table>
 
@@ -56,21 +58,23 @@
     var investment = 2400;
     var amounts = {
       "btc": 0.0000317942,
-      "eth": 3.6467168,
+      "eth": 3.6680967,
       "dash": 0,
       "xlm": 0,
       "xrp": 0,
-      "bat": 4909.408,
-      "icn": 100
+      "bat": 5906.408,
+      "icn": 99,
+      "wings": 46.6993899
     };
     var originalRates = {
       "btc": 2163.44,
-      "eth": 233.3095482,
+      "eth": 261.413009708,
       "dash": 0,
       "xlm": 0,
       "xrp": 0,
       "bat": 0.265570487,
-      "icn": 1.6848234
+      "icn": 1.6848234,
+      "wings": 0.7719
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
@@ -79,7 +83,8 @@
       "xlm": amounts["xlm"] * originalRates["xlm"],
       "xrp": amounts["xrp"] * originalRates["xrp"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "icn": amounts["icn"] * originalRates["icn"]
+      "icn": amounts["icn"] * originalRates["icn"],
+      "wings": amounts["wings"] * originalRates["wings"]
     }
     var totalOriginalValue = 0;
 
@@ -112,6 +117,7 @@
     getRate('xrp');
     getRate('bat');
     getRate('icn');
+    getRate('wings');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -156,6 +162,7 @@
         getRate('xrp');
         getRate('bat');
         getRate('icn');
+        getRate('wings');
         fillIn();
       }, 1000);
     }
