@@ -37,8 +37,6 @@
         </tr>
         <tr id="bat">
         </tr>
-        <tr id="icn">
-        </tr>
         <tr id="bnt">
         </tr>
       </tbody>
@@ -62,7 +60,6 @@
       "mgo": 528.82852662,
       "xrp": 1058.27338,
       "bat": 11474.01351539,
-      "icn": 131.58425,
       "bnt": 300
     };
     var originalRates = {
@@ -72,7 +69,6 @@
       "mgo": 1.4223,
       "xrp": 0.2800,
       "bat": 0.215192686,
-      "icn": 1.722133,
       "bnt": 3.32
     };
     var originalValues = {
@@ -81,7 +77,6 @@
       "dash": amounts["dash"] * originalRates["dash"],
       "xrp": amounts["xrp"] * originalRates["xrp"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "icn": amounts["icn"] * originalRates["icn"],
       "bnt": amounts["bnt"] * originalRates["bnt"]
     }
     var totalOriginalValue = 0;
@@ -113,7 +108,6 @@
     getRate('dash');
     getRate('xrp');
     getRate('bat');
-    getRate('icn');
     getRate('bnt');
     fillIn = function() {
       sum = 0;
@@ -158,7 +152,6 @@
         getRate('dash');
         getRate('xrp');
         getRate('bat');
-        getRate('icn');
         getRate('bnt');
         fillIn();
       }, 1000);
