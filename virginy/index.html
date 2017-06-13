@@ -33,8 +33,6 @@
         </tr>
         <tr id="bat">
         </tr>
-        <tr id="icn">
-        </tr>
         <tr id="wings">
         </tr>
         <tr id="bnt">
@@ -55,34 +53,22 @@
     var investment = 2733;
     var amounts = {
       "btc": 0.0000317942,
-      "eth": 1.6680967,
-      "dash": 0,
-      "xlm": 0,
-      "xrp": 0,
+      "eth": 2.168909587,
       "bat": 5906.408,
-      "icn": 99,
       "wings": 46.6993899,
       "bnt": 200
     };
     var originalRates = {
       "btc": 2163.44,
       "eth": 261.413009708,
-      "dash": 0,
-      "xlm": 0,
-      "xrp": 0,
       "bat": 0.265570487,
-      "icn": 1.6848234,
       "wings": 0.7719,
       "bnt": 3.32
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
       "eth": amounts["eth"] * originalRates["eth"],
-      "dash": amounts["dash"] * originalRates["dash"],
-      "xlm": amounts["xlm"] * originalRates["xlm"],
-      "xrp": amounts["xrp"] * originalRates["xrp"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "icn": amounts["icn"] * originalRates["icn"],
       "wings": amounts["wings"] * originalRates["wings"],
       "bnt": amounts["bnt"] * originalRates["bnt"]
     }
@@ -113,7 +99,6 @@
     getRate('btc')
     getRate('eth');
     getRate('bat');
-    getRate('icn');
     getRate('wings');
     getRate('bnt');
     fillIn = function() {
@@ -157,7 +142,6 @@
         getRate('btc')
         getRate('eth');
         getRate('bat');
-        getRate('icn');
         getRate('wings');
         getRate('bnt');
         fillIn();
