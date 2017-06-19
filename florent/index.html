@@ -26,17 +26,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="btc">
-        </tr>
         <tr id="eth">
         </tr>
-        <tr id="dash">
-        </tr>
-        <tr id="xlm">
-        </tr>
-        <tr id="xrp">
-        </tr>
         <tr id="bat">
+        </tr>
+        <tr id="ans">
         </tr>
       </tbody>
     </table>
@@ -53,20 +47,14 @@
     var rates = {};
     var investment = 2000;
     var amounts = {
-      "btc": 0,
       "eth": 4.73015498,
-      "dash": 0,
-      "xlm": 0,
-      "xrp": 0,
-      "bat": 3527.732
+      "bat": 3527.732,
+      "ans":
     };
     var originalRates = {
-      "btc": 0,
       "eth": 229.1,
-      "dash": 0,
-      "xlm": 0,
-      "xrp": 0,
-      "bat": 0.260768294
+      "bat": 0.260768294,
+      "ans":
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
@@ -100,11 +88,8 @@
       };
       req.send();
     }
-    getRate('btc')
+    getRate('ans')
     getRate('eth');
-    getRate('dash');
-    getRate('xlm');
-    getRate('xrp');
     getRate('bat');
     fillIn = function() {
       sum = 0;
@@ -143,11 +128,8 @@
       + totalWorth.toFixed(0).toString() + "€";
       if (done < 5) setTimeout(fillIn, 50);
       else setTimeout(function() {
-        getRate('btc')
+        getRate('ans')
         getRate('eth');
-        getRate('dash');
-        getRate('xlm');
-        getRate('xrp');
         getRate('bat');
         fillIn();
       }, 1000);
