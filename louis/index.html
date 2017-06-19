@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <h4><br/>I invested CHF1000 in cryptocurencies on the morning of May 23rd, 2017. Let's see how it went :</h4>
+    <h4><br/>Antshares antshares antshares</h4>
     <table class="u-full-width">
       <thead>
         <tr>
@@ -25,15 +25,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="btc">
+        <tr id="ans">
         </tr>
-        <tr id="eth">
+        <tr id="bat">
         </tr>
-        <tr id="xmr">
+        <tr id="waves">
         </tr>
-        <tr id="xlm">
-        </tr>
-        <tr id="xrp">
+        <tr id="gnt">
         </tr>
       </tbody>
     </table>
@@ -48,11 +46,16 @@
   <script>
     var rates = {};
     var amounts = {
-      "btc": 0.0945436,
-      "eth": 1.238097,
-      "xmr": 5.029182,
-      "xlm": 3857.35,
-      "xrp": 697.7902428
+      "waves": 37.27,
+      "gnt": 684.0004872,
+      "ans": 164.51630931,
+      "bat": 1231.341485
+    };
+    var originalRates = {
+      "waves": 6.03,
+      "gnt": 0.4964,
+      "ans": 5.47686238,
+      "bat": 0.2067631406
     };
 
     getRate = function(pair) {
@@ -71,11 +74,10 @@
       };
       req.send();
     }
-    getRate('btc')
-    getRate('eth');
-    getRate('xmr');
-    getRate('xlm');
-    getRate('xrp');
+    getRate('waves');
+    getRate('gnt');
+    getRate('ans');
+    getRate('bat')
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -84,12 +86,12 @@
           "<td>" + k.toUpperCase() + "</td>" +
           "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
           "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
-          "<td>205.82</td>" +
+          "<td>" + (originalRates[k] * amounts[k]).toString().slice(0, 6) + "</td>" +
           "<td>" + (rates[k] * amounts[k]).toString().slice(0, 6) + "</td>";
         sum += rates[k] * amounts[k];
+        sum -= originalRates[k] * amounts[k];
         if (rates[k] > 0) done++
       });
-      sum -= 5 * 205.82;
       sum = parseFloat(Math.round(sum * 100) / 100).toFixed(2);
       if (sum > 0) {
         document.title = "+ $" + sum;
@@ -102,11 +104,10 @@
       };
       if (done < 5) setTimeout(fillIn, 50);
       else setTimeout(function() {
-        getRate('btc')
-        getRate('eth');
-        getRate('xmr');
-        getRate('xlm');
-        getRate('xrp');
+        getRate('waves')
+        getRate('gnt');
+        getRate('ans');
+        getRate('bat');
         fillIn();
       }, 1000);
     }
