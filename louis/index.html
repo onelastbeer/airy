@@ -33,7 +33,13 @@
         </tr>
         <tr id="gnt">
         </tr>
+        <tr id="swt">
+        </tr>
         <tr id="ptoy">
+        </tr>
+        <tr id="sc">
+        </tr>
+        <tr id="myst">
         </tr>
       </tbody>
     </table>
@@ -50,16 +56,22 @@
     var amounts = {
       "waves": 37.27,
       "gnt": 684.0004872,
-      "ans": 164.51630931,
+      "ans": 210.45278773,
       "bat": 1231.341485,
-      "ptoy": 591.1242604
+      "swt": 41.90555302,
+      "ptoy": 591.1242604,
+      "sc": 0,
+      "myst": 62.23106460
     };
     var originalRates = {
       "waves": 6.03,
       "gnt": 0.4964,
-      "ans": 5.47686238,
+      "ans": 6.69584119561,
       "bat": 0.2067631406,
-      "ptoy": 0.6279195
+      "swt": 4.3,
+      "ptoy": 0.6279195,
+      "sc": 0,
+      "myst": 3.00782376
     };
 
     getRate = function(pair) {
@@ -82,7 +94,10 @@
     getRate('gnt');
     getRate('ans');
     getRate('bat');
+    getRate('swt');
     getRate('ptoy');
+    getRate('sc');
+    getRate('myst');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -113,7 +128,10 @@
         getRate('gnt');
         getRate('ans');
         getRate('bat');
+        getRate('swt');
         getRate('ptoy');
+        getRate('sc');
+        getRate('myst');
         fillIn();
       }, 1000);
     }
