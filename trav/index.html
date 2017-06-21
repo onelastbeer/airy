@@ -122,11 +122,11 @@
       sum = parseFloat(Math.round(sum * 100) / 100).toFixed(2);
       if (sum > 0) {
         document.title = "+ " + sum + "€";
-        document.getElementById("total").innerHTML = "+ "  + sum + " [" + (sum/investment*100) + "%]" + "€";
+        document.getElementById("total").innerHTML = "+ "  + sum + " [" + (sum/investment*100).toFixed(0).toString() + "%]" + "€";
         document.getElementById("total").style.color = 'green';
       } else {
         document.title = "- " + (-sum) + "€";
-        document.getElementById("total").innerHTML = "- " + (-sum) + " [" + (sum/investment*100) + "%]" + "€";
+        document.getElementById("total").innerHTML = "- " + (-sum) + " [" + (sum/investment*100).toFixed(0).toString() + "%]" + "€";
         document.getElementById("total").style.color = 'red';
       };
       document.getElementById("investment").innerHTML = "Total investment : "
