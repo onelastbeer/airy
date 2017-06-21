@@ -113,14 +113,14 @@
       });
       var totalWorth = sum;
       sum -= investment;
-      sum = parseFloat(Math.round(sum * 100) / 100).toFixed(2);
+      sum = parseFloat(Math.round(sum * 100) / 100);
       if (sum > 0) {
-        document.title = "+ " + sum + "€";
-        document.getElementById("total").innerHTML = "+ "  + sum + "€" + " [" + (sum/investment*100).toFixed(0).toString() + "%]";
+        document.title = "+ " + sum.toFixed(0) + "€";
+        document.getElementById("total").innerHTML = "+ "  + sum.toFixed(0) + "€" + " | [" + (sum/investment*100).toFixed(0).toString() + "%]";
         document.getElementById("total").style.color = 'green';
       } else {
-        document.title = "- " + (-sum) + "€";
-        document.getElementById("total").innerHTML = "- " + (-sum) + "€" + " [" + (sum/investment*100).toFixed(0).toString() + "%]";
+        document.title = "- " + (-sum).toFixed(0) + "€";
+        document.getElementById("total").innerHTML = "- " + (-sum).toFixed(0) + "€" + " | [" + (sum/investment*100).toFixed(0).toString() + "%]";
         document.getElementById("total").style.color = 'red';
       };
       document.getElementById("investment").innerHTML = "Total investment : "
