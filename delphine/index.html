@@ -67,6 +67,8 @@
 
     var nbCurrencies = countProperties(originalValues);
 
+    console.log(nbCurrencies);
+
     for (var currency in originalValues) {
       if (originalValues.hasOwnProperty(currency)) {
         totalOriginalValue += originalValues[currency];
