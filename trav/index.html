@@ -59,6 +59,19 @@
     }
     var totalOriginalValue = 0;
 
+    function countProperties(obj) {
+      var count = 0;
+
+      for(var prop in obj) {
+          if(obj.hasOwnProperty(prop))
+              ++count;
+        }
+
+        return count;
+    }
+
+    var nbCurrencies = countProperties(originalValues);
+
     for (var currency in originalValues) {
       if (originalValues.hasOwnProperty(currency)) {
         totalOriginalValue += originalValues[currency];
@@ -119,7 +132,7 @@
       document.getElementById("investment").innerHTML = "Total investment : "
       + investment.toFixed(0).toString() + "€ | Current worth : "
       + totalWorth.toFixed(0).toString() + "€";
-      if (done < 5) setTimeout(fillIn, 50);
+      if (done < nbCurrencies) setTimeout(fillIn, 50);
       else setTimeout(function() {
         getRate('eth');
         getRate('ans');
