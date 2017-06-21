@@ -121,11 +121,11 @@
       sum -= investment;
       sum = parseFloat(Math.round(sum * 100) / 100).toFixed(2);
       if (sum > 0) {
-        document.title = "+ " + sum + "€";
+        document.title = "+ " + sum + " [" + (sum/investment) + "%]" + "€";
         document.getElementById("total").innerHTML = "+ " + sum + "€";
         document.getElementById("total").style.color = 'green';
       } else {
-        document.title = "- " + (-sum) + "€";
+        document.title = "- " + (-sum) + " [" + (sum/investment) + "%]" + "€";
         document.getElementById("total").innerHTML = "- " + (-sum) + "€";
         document.getElementById("total").style.color = 'red';
       };
