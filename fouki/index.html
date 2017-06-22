@@ -29,6 +29,8 @@
       <tbody>
         <tr id="ans">
         </tr>
+        <tr id="bat">
+        </tr>
       </tbody>
     </table>
 
@@ -44,13 +46,16 @@
     var rates = {};
     var investment = 92;
     var amounts = {
-      "ans": 12
+      "ans": 12,
+      "bat": 105
     };
     var originalRates = {
-      "ans": 7.66666666667
+      "ans": 7.66666666667,
+      "bat": 0.16
     };
     var originalValues = {
-      "ans": amounts["ans"] * originalRates["ans"]
+      "ans": amounts["ans"] * originalRates["ans"],
+      "bat": amounts["bat"] * originalRates["bat"]
     }
     var totalOriginalValue = 0;
 
@@ -90,6 +95,7 @@
       req.send();
     }
     getRate('ans');
+    getRate('bat');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -129,6 +135,7 @@
       if (done < nbCurrencies) setTimeout(fillIn, 50);
       else setTimeout(function() {
         getRate('ans');
+        getRate('bat');
         fillIn();
       }, 10000);
     }
