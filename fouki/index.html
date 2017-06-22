@@ -27,6 +27,8 @@
         </tr>
       </thead>
       <tbody>
+        <tr id="btc">
+        </tr>
         <tr id="ans">
         </tr>
         <tr id="bat">
@@ -46,14 +48,17 @@
     var rates = {};
     var investment = 92;
     var amounts = {
+      "btc": 0.02225
       "ans": 12,
       "bat": 105
     };
     var originalRates = {
+      "btc": 449.438202247,
       "ans": 7.66666666667,
       "bat": 0.16
     };
     var originalValues = {
+      "btc": amounts["btc"] * originalRates["btc"],
       "ans": amounts["ans"] * originalRates["ans"],
       "bat": amounts["bat"] * originalRates["bat"]
     }
@@ -96,6 +101,7 @@
     }
     getRate('ans');
     getRate('bat');
+    getRate('btc');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -136,6 +142,7 @@
       else setTimeout(function() {
         getRate('ans');
         getRate('bat');
+        getRate('btc');
         fillIn();
       }, 10000);
     }
