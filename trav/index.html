@@ -46,12 +46,12 @@
     var rates = {};
     var investment = 13750;
     var amounts = {
-      "eth": 18.47406,
-      "ans": 1011
+      "eth": 0.004,
+      "ans": 1644
     };
     var originalRates = {
       "eth": 295.237,
-      "ans": 8.056640625
+      "ans": 8.32725060827
     };
     var originalValues = {
       "eth": amounts["eth"] * originalRates["eth"],
@@ -126,7 +126,7 @@
         document.getElementById("total").style.color = 'green';
       } else {
         document.title = "- " + (-sum).toFixed(0) + "€";
-        document.getElementById("total").innerHTML = "- " + (-sum).toFixed(0) + "€" + " | " + (sum/investment*100).toFixed(0).toString() + "%";
+        document.getElementById("total").innerHTML = "- " + (-sum).toFixed(0) + "€" + " | " + (-sum/investment*100).toFixed(0).toString() + "%";
         document.getElementById("total").style.color = 'red';
       };
       document.getElementById("investment").innerHTML = "Total investment : "

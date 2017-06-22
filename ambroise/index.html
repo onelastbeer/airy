@@ -158,7 +158,7 @@
         document.getElementById("total").style.color = 'green';
       } else {
         document.title = "- " + (-sum).toFixed(0) + "€";
-        document.getElementById("total").innerHTML = "- " + (-sum).toFixed(0) + "€" + " | " + (sum/investment*100).toFixed(0).toString() + "%";
+        document.getElementById("total").innerHTML = "- " + (-sum).toFixed(0) + "€" + " | " + (-sum/investment*100).toFixed(0).toString() + "%";
         document.getElementById("total").style.color = 'red';
       };
       document.getElementById("investment").innerHTML = "Total investment : "
