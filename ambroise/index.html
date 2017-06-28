@@ -153,7 +153,7 @@
           "<td>" + curWorthStr + "</td>" +
           "<td>" + wonStr + "</td>" +
           "<td style=\"color:" + (won >= 0 ? "green" : "red") + "\">"
-          + (amounts[k] >  0 ?  : "0") + "%" + "</td>";
+          + (amounts[k] >  0 ? perWonStr : "0") + "%" + "</td>";
         sum += rates[k] * amounts[k];
         if (rates[k] > 0) done++
       });
