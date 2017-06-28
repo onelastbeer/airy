@@ -100,9 +100,10 @@
       var req = new XMLHttpRequest();
       req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
       req.onload = function() {
-        if (this.status >= 200 && this.status < 400 && data.success) {
+        if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          rates[pair] = data.ticker.price;
+          if(data.success) rates[pair] = data.ticker.price;
+          else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
           rates[pair] = -1;
