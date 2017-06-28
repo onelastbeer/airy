@@ -92,19 +92,27 @@
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          rates[pair] = data.ticker.price;
+          if(data.success) rates[pair] = data.ticker.price;
+          else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
+          rates[pair] = -1;
         }
       };
       req.onerror = function() {
         console.log("There was a connection error of some sort");
+        rates[pair] = -1;
       };
       req.send();
     }
-    getRate('ans')
-    getRate('eth');
-    getRate('bat');
+
+    getRates = function() {
+      for(var key in amounts) {
+        getRate(key);
+      }
+    }
+
+    getRates();
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -113,16 +121,33 @@
         var curWorth = rates[k] * amounts[k];
         var won = (curWorth)-(oriWorth);
         var perWon = won/oriWorth*100;
+
+        var amountStr = amounts[k].toString().slice(0, 6);
+        var oriRatesStr = originalRates[k].toString().slice(0, 6);
+        var ratesStr = rates[k].toString().slice(0, 6);
+        var oriWorthStr = oriWorth.toFixed(2).toString();
+        var curWorthStr = curWorth.toFixed(2).toString();
+        var wonStr = won.toFixed(2).toString();
+        var perWonStr = perWon.toFixed(2).toString();
+
+        if(rates[k] < 0) {
+          curWorth = oriWorth;
+          curWorthStr = "Error";
+          ratesStr = "Error"
+          wonStr = "Error";
+          perWonStr = "Error";
+        }
+
         document.getElementById(k).innerHTML =
           "<td>" + k.toUpperCase() + "</td>" +
-          "<td>" + amounts[k].toString().slice(0, 6) + "</td>" +
-          "<td>" + originalRates[k].toString().slice(0, 6) + "</td>" +
-          "<td>" + rates[k].toString().slice(0, 6) + "</td>" +
-          "<td>" + oriWorth.toFixed(2).toString() + "</td>" +
-          "<td>" + curWorth.toFixed(2).toString() + "</td>" +
-          "<td>" + won.toFixed(2).toString() + "</td>" +
+          "<td>" + amountStr + "</td>" +
+          "<td>" + oriRatesStr + "</td>" +
+          "<td>" + ratesStr + "</td>" +
+          "<td>" + oriWorthStr + "</td>" +
+          "<td>" + curWorthStr + "</td>" +
+          "<td>" + wonStr + "</td>" +
           "<td style=\"color:" + (won >= 0 ? "green" : "red") + "\">"
-          + (amounts[k] >  0 ? perWon.toFixed(2).toString() : "0") + "%" + "</td>";
+          + (amounts[k] >  0 ? perWonStr : "0") + (rates[k] >= 0 ? "%" : "") + "</td>";
         sum += rates[k] * amounts[k];
         if (rates[k] > 0) done++
       });
@@ -143,14 +168,11 @@
       + totalWorth.toFixed(0).toString() + "€";
       if (done < nbCurrencies) setTimeout(fillIn, 50);
       else setTimeout(function() {
-        getRate('ans')
-        getRate('eth');
-        getRate('bat');
+        getRates();
         fillIn();
       }, 10000);
     }
     fillIn();
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
