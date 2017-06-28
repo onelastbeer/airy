@@ -31,13 +31,7 @@
         </tr>
         <tr id="eth">
         </tr>
-        <tr id="dash">
-        </tr>
-        <tr id="xrp">
-        </tr>
         <tr id="bat">
-        </tr>
-        <tr id="bnt">
         </tr>
         <tr id="ans">
         </tr>
@@ -58,30 +52,25 @@
     var amounts = {
       "btc": 0.00018,
       "eth": 18.019,
-      "dash": 1.99276,
-      "xrp": 1058.27338,
+      "nvo": 0,
       "bat": 19416.835,
-      "bnt": 300,
-      "myst": 704.44915254,
-      "ans": 2295
+      "ans": 2295,
+      "pay": 13440
     };
     var originalRates = {
       "btc": 718.723921,
       "eth": 12.5007618,
-      "dash": 133.5000,
-      "xrp": 0.2800,
+      "nvo": 133.5000,
       "bat": 0.19541556559,
-      "bnt": 3.32,
-      "myst": 2.42033082708, //0.00706863 ETH,
-      "ans": 4.27597300827
+      "ans": 4.27597300827,
+      "pay": 0.704
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
       "eth": amounts["eth"] * originalRates["eth"],
-      "dash": amounts["dash"] * originalRates["dash"],
-      "xrp": amounts["xrp"] * originalRates["xrp"],
+      "nvo": amounts["nvo"] * originalRates["nvo"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "bnt": amounts["bnt"] * originalRates["bnt"],
+      "pay": amounts["pay"] * originalRates["pay"],
       "ans": amounts["ans"] * originalRates["ans"]
     }
     var totalOriginalValue = 0;

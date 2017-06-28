@@ -33,8 +33,6 @@
         </tr>
         <tr id="bat">
         </tr>
-        <tr id="bnt">
-        </tr>
         <tr id="ans">
         </tr>
       </tbody>
@@ -53,23 +51,23 @@
     var investment = 10150;
     var amounts = {
       "btc": 0.0000317942,
-      "eth": 5.42876,
+      "eth": 4.35099,
       "bat": 6405.408,
-      "bnt": 200,
+      "pay": 2275.41,
       "ans": 979
     };
     var originalRates = {
       "btc": 2163.44,
-      "eth": 295.040094239,
+      "eth": 229.83,
       "bat": 0.26096349307,
-      "bnt": 3.32,
+      "pay": 0.70405,
       "ans": 6.23511
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
       "eth": amounts["eth"] * originalRates["eth"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "bnt": amounts["bnt"] * originalRates["bnt"],
+      "pay": amounts["pay"] * originalRates["pay"],
       "ans": amounts["ans"] * originalRates["ans"]
     }
     var totalOriginalValue = 0;
@@ -112,7 +110,6 @@
     getRate('btc')
     getRate('eth');
     getRate('bat');
-    getRate('bnt');
     getRate('ans');
     fillIn = function() {
       sum = 0;
@@ -155,7 +152,6 @@
         getRate('btc')
         getRate('eth');
         getRate('bat');
-        getRate('bnt');
         getRate('ans');
         fillIn();
       }, 10000);
