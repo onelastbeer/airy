@@ -117,12 +117,14 @@
       };
       req.send();
     }
-    getRate('btc')
-    getRate('eth');
-    getRate('bat');
-    getRate('ans');
-    getRate('pay');
-    getRate('nvo');
+
+    getRates = function() {
+      for(var key in amounts) {
+        getRate(key);
+      }
+    }
+
+    getRates();
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -178,12 +180,7 @@
       + totalWorth.toFixed(0).toString() + "€";
       if (done < nbCurrencies) setTimeout(fillIn, 50);
       else setTimeout(function() {
-        getRate('btc')
-        getRate('eth');
-        getRate('bat');
-        getRate('ans');
-        getRate('pay');
-        getRate('nvo');
+        getRates();
         fillIn();
       }, 10000);
     }
