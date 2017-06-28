@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="x-ua-compayible" content="ie=edge">
   <title>AIRY</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +35,9 @@
         </tr>
         <tr id="ans">
         </tr>
-        <tr id="pat">
+        <tr id="pay">
+        </tr>
+        <tr id="nvo">
         </tr>
       </tbody>
     </table>
@@ -57,7 +59,7 @@
       "nvo": 0,
       "bat": 19416.835,
       "ans": 2295,
-      "pat": 13440
+      "pay": 13440
     };
     var originalRates = {
       "btc": 718.723921,
@@ -65,14 +67,14 @@
       "nvo": 133.5000,
       "bat": 0.19541556559,
       "ans": 4.27597300827,
-      "pat": 0.704
+      "pay": 0.704
     };
     var originalValues = {
       "btc": amounts["btc"] * originalRates["btc"],
       "eth": amounts["eth"] * originalRates["eth"],
       "nvo": amounts["nvo"] * originalRates["nvo"],
       "bat": amounts["bat"] * originalRates["bat"],
-      "pat": amounts["pat"] * originalRates["pat"],
+      "pay": amounts["pay"] * originalRates["pay"],
       "ans": amounts["ans"] * originalRates["ans"]
     }
     var totalOriginalValue = 0;
@@ -119,7 +121,7 @@
     getRate('eth');
     getRate('bat');
     getRate('ans');
-    getRate('pat');
+    getRate('pay');
     fillIn = function() {
       sum = 0;
       done = 0;
@@ -179,7 +181,7 @@
         getRate('eth');
         getRate('bat');
         getRate('ans');
-        getRate('pat');
+        getRate('pay');
         fillIn();
       }, 10000);
     }
