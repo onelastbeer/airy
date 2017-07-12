@@ -121,7 +121,7 @@
 
     var nbCurrencies = countProperties(curs);
 
-    for (var currency in originalValues) {
+    for (var currency in curs) {
       curs[currency].ov = curs[currency].or * curs[currency].am
       if (originalValues.hasOwnProperty(currency)) {
         totalOriginalValue += curs[currency].ov;
