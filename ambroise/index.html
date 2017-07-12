@@ -53,35 +53,6 @@
   <script>
     var rates = {};
     var investment = 5000;
-
-    var curs = {
-      "btc": {
-        "id": "bitcoin",
-        "am": 0.00018,
-        "or": 718.723921,
-      },
-      "eth": {
-        "id": "ethereum",
-        "am": 0.00018,
-        "or": 718.723921,
-      },
-      "bat": {
-        "id": "basic-attention-token",
-        "am": 0.00018,
-        "or": 718.723921,
-      },
-      "ans": {
-        "id": "antshares",
-        "am": 0.00018,
-        "or": 718.723921,
-      },
-      "pay": {
-        "id": "tenx",
-        "am": 0.00018,
-        "or": 718.723921,
-      }
-    }
-    /*
     var amounts = {
       "btc": 0.00018,
       "eth": 2.11,
@@ -105,7 +76,7 @@
       "bat": amounts["bat"] * originalRates["bat"],
       "pay": amounts["pay"] * originalRates["pay"],
       "ans": amounts["ans"] * originalRates["ans"]
-    }*/
+    }
     var totalOriginalValue = 0;
 
     function countProperties(obj) {
@@ -119,21 +90,22 @@
         return count;
     }
 
-    var nbCurrencies = countProperties(curs);
+    var nbCurrencies = countProperties(originalValues);
 
-    for (var currency in curs) {
-      curs[currency].ov = curs[currency].or * curs[currency].am
-      totalOriginalValue += curs[currency].ov;
+    for (var currency in originalValues) {
+      if (originalValues.hasOwnProperty(currency)) {
+        totalOriginalValue += originalValues[currency];
+      }
     }
 
-    getRate = function(cur) {
+    getRate = function(pair) {
       var req = new XMLHttpRequest();
-      req.open('GET', 'https://api.coinmarketcap.com/v1/ticker/' + cur.id + '/?convert=EUR', true);
+      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          if(data.success) cur.cr = data.ticker.price;
-          else cur.cr = -1;
+          if(data.success) rates[pair] = data.ticker.price;
+          else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
           rates[pair] = -1;
@@ -147,8 +119,8 @@
     }
 
     getRates = function() {
-      for(var key in curs) {
-        getRate(curs[key]);
+      for(var key in amounts) {
+        getRate(key);
       }
     }
 
@@ -157,14 +129,14 @@
       sum = 0;
       done = 0;
       Object.keys(rates).forEach(function(k) {
-        var oriWorth = curs[k].or * curs[k].am;
-        var curWorth = curs[k].cr * curs[k].am;
+        var oriWorth = originalRates[k] * amounts[k];
+        var curWorth = rates[k] * amounts[k];
         var won = (curWorth)-(oriWorth);
         var perWon = won/oriWorth*100;
 
-        var amountStr = curs[k].am.toString().slice(0, 6);
-        var oriRatesStr = curs[k].or.toString().slice(0, 6);
-        var ratesStr = curs[k].cr.toString().slice(0, 6);
+        var amountStr = amounts[k].toString().slice(0, 6);
+        var oriRatesStr = originalRates[k].toString().slice(0, 6);
+        var ratesStr = rates[k].toString().slice(0, 6);
         var oriWorthStr = oriWorth.toFixed(2).toString();
         var curWorthStr = curWorth.toFixed(2).toString();
         var wonStr = won.toFixed(2).toString();
@@ -188,7 +160,7 @@
           "<td>" + wonStr + "</td>" +
           "<td style=\"color:" + (won >= 0 ? "green" : "red") + "\">"
           + (amounts[k] >  0 ? perWonStr : "0") + (rates[k] >= 0 ? "%" : "") + "</td>";
-        sum += curs[k].cr * curs[k].am;
+        sum += rates[k] * amounts[k];
         if (rates[k] > 0) done++
       });
       var totalWorth = sum;
