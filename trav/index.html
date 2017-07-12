@@ -44,18 +44,21 @@
   </div>
   <script>
     var rates = {};
-    var investment = 13750;
+    var investment = 15250;
     var amounts = {
-      "eth": 0.004,
-      "ans": 1644
+      "eth": 13,
+      "ans": 1644,
+      "pay": 554
     };
     var originalRates = {
-      "eth": 295.237,
-      "ans": 8.32725060827
+      "eth": 166.666666,
+      "ans": 8.32725060827,
+      "pay": 0.6001
     };
     var originalValues = {
       "eth": amounts["eth"] * originalRates["eth"],
-      "ans": amounts["ans"] * originalRates["ans"]
+      "ans": amounts["ans"] * originalRates["ans"],
+      "pay": amounts["pay"] * originalRates["pay"],
     }
     var totalOriginalValue = 0;
 
