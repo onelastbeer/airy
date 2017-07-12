@@ -123,9 +123,7 @@
 
     for (var currency in curs) {
       curs[currency].ov = curs[currency].or * curs[currency].am
-      if (originalValues.hasOwnProperty(currency)) {
-        totalOriginalValue += curs[currency].ov;
-      }
+      totalOriginalValue += curs[currency].ov;
     }
 
     getRate = function(cur) {
