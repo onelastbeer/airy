@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compayible" content="ie=edge">
+  <meta http-equiv="x-ua-comtenxible" content="ie=edge">
   <title>AIRY</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,17 +27,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="btc">
+        <tr id="bitcoin">
         </tr>
-        <tr id="eth">
+        <tr id="ethereum">
         </tr>
-        <tr id="bat">
+        <tr id="basic-attention-token">
         </tr>
-        <tr id="ans">
+        <tr id="antshares">
         </tr>
-        <tr id="pay">
-        </tr>
-        <tr id="nvo">
+        <tr id="tenx">
         </tr>
       </tbody>
     </table>
@@ -64,28 +62,28 @@
     var rates = {};
     var investment = 5000;
     var amounts = {
-      "btc": 0.00018,
-      "eth": 2.11,
-      "nvo": 0,
-      "bat": 14995,
-      "ans": 2000,
-      "pay": 13020
+      "bitcoin": 0.00018,
+      "ethereum": 2.11,
+      //"nvo": 0,
+      "basic-attention-token": 14995,
+      "antshares": 2000,
+      "tenx": 13020
     };
     var originalRates = {
-      "btc": 718.723921,
-      "eth": 12.5007618,
-      "nvo": 133.5000,
-      "bat": 0.19541556559,
-      "ans": 4.27597300827,
-      "pay": 0.704
+      "bitcoin": 718.723921,
+      "ethereum": 12.5007618,
+      //"nvo": 133.5000,
+      "basic-attention-token": 0.19541556559,
+      "antshares": 4.27597300827,
+      "tenx": 0.704
     };
     var originalValues = {
-      "btc": amounts["btc"] * originalRates["btc"],
-      "eth": amounts["eth"] * originalRates["eth"],
-      "nvo": amounts["nvo"] * originalRates["nvo"],
-      "bat": amounts["bat"] * originalRates["bat"],
-      "pay": amounts["pay"] * originalRates["pay"],
-      "ans": amounts["ans"] * originalRates["ans"]
+      "bitcoin": amounts["bitcoin"] * originalRates["bitcoin"],
+      "ethereum": amounts["ethereum"] * originalRates["ethereum"],
+      //"nvo": amounts["nvo"] * originalRates["nvo"],
+      "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"],
+      "tenx": amounts["tenx"] * originalRates["tenx"],
+      "antshares": amounts["antshares"] * originalRates["antshares"]
     }
     var totalOriginalValue = 0;
 
@@ -110,11 +108,11 @@
 
     getRate = function(pair) {
       var req = new XMLHttpRequest();
-      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
+      req.open('GET', 'https://api.coinmarketcap.com/v1/ticker/' + pair + '/?convert=EUR', true);
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          if(data.success) rates[pair] = data.ticker.price;
+          if(!data.error) rates[pair] = data[0].price_eur;
           else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
