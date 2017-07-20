@@ -27,24 +27,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="eth">
+        <tr id="ethereum">
         </tr>
-        <tr id="ans">
+        <tr id="antshares">
         </tr>
-        <tr id="pay">
+        <tr id="tenx">
         </tr>
       </tbody>
     </table>
 
     <h1 style="text-align: center" id="total"></h1>
     <h4 style="text-align: center" id="investment"></h4>
-    <div>
-      <h6 style="text-align: center">TenX PAY value above is currently wrong, please refer to the value bellow for reference</h6>
-    </div>
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-    <div class="coinmarketcap-currency-widget" data-currency="tenx" data-base="EUR"
-    data-secondary="" data-ticker="true" data-rank="false" data-marketcap="true"
-    data-volume="true" data-stats="EUR" data-statsticker="false"></div>
   </div>
 
   <div style="bottom: 0px; text-align: right; width: 95%;">
@@ -55,19 +48,19 @@
     var rates = {};
     var investment = 19175;
     var amounts = {
-      "eth": 32.18716289 - 22.53101402,
-      "ans": 1644,
-      "pay": 6528.445855
+      "ethereum": 32.18716289 - 22.53101402,
+      "antshares": 1644,
+      "tenx": 6528.445855
     };
     var originalRates = {
-      "eth": 168.545,
-      "ans": 8.32725060827,
-      "pay": 0.5817
+      "ethereum": 168.545,
+      "antshares": 8.32725060827,
+      "tenx": 0.5817
     };
     var originalValues = {
-      "eth": amounts["eth"] * originalRates["eth"],
-      "ans": amounts["ans"] * originalRates["ans"],
-      "pay": amounts["pay"] * originalRates["pay"],
+      "ethereum": amounts["ethereum"] * originalRates["ethereum"],
+      "antshares": amounts["antshares"] * originalRates["antshares"],
+      "tenx": amounts["tenx"] * originalRates["tenx"],
     }
     var totalOriginalValue = 0;
 
@@ -92,11 +85,11 @@
 
     getRate = function(pair) {
       var req = new XMLHttpRequest();
-      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
+      req.open('GET', 'https://api.coinmarketcap.com/v1/ticker/' + pair + '/?convert=EUR', true);
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          if(data.success) rates[pair] = data.ticker.price;
+          if(!data.error) rates[pair] = data[0].price_eur;
           else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
