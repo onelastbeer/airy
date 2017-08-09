@@ -27,11 +27,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="eth">
+        <tr id="ethereum">
         </tr>
-        <tr id="bat">
+        <tr id="basic-attention-token">
         </tr>
-        <tr id="ans">
+        <tr id="neo">
         </tr>
       </tbody>
     </table>
@@ -48,22 +48,19 @@
     var rates = {};
     var investment = 3500;
     var amounts = {
-      "eth": 5.094,
-      "bat": 1867,
-      "ans": 175
+      "ethereum": 5.094,
+      "basic-attention-token": 1867,
+      "neo": 175
     };
     var originalRates = {
-      "eth": 229.1,
-      "bat": 0.260768294,
-      "ans": 7.31428571429
+      "ethereum": 229.1,
+      "basic-attention-token": 0.260768294,
+      "neo": 7.31428571429
     };
     var originalValues = {
-      "btc": amounts["btc"] * originalRates["btc"],
-      "eth": amounts["eth"] * originalRates["eth"],
-      "dash": amounts["dash"] * originalRates["dash"],
-      "xlm": amounts["xlm"] * originalRates["xlm"],
-      "xrp": amounts["xrp"] * originalRates["xrp"],
-      "bat": amounts["bat"] * originalRates["bat"]
+      "neo": amounts["neo"] * originalRates["neo"],
+      "ethereum": amounts["ethereum"] * originalRates["ethereum"],
+      "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"]
     }
     var totalOriginalValue = 0;
 
@@ -88,11 +85,11 @@
 
     getRate = function(pair) {
       var req = new XMLHttpRequest();
-      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
+      req.open('GET', 'https://api.coinmarketcap.com/v1/ticker/' + pair + '/?convert=EUR', true);
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          if(data.success) rates[pair] = data.ticker.price;
+          if(!data.error) rates[pair] = data[0].price_eur;
           else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
