@@ -27,11 +27,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="btc">
+        <tr id="bitcoin">
         </tr>
-        <tr id="ans">
+        <tr id="neo">
         </tr>
-        <tr id="bat">
+        <tr id="basic-attention-token">
+        </tr>
+        <tr id="tenx">
         </tr>
       </tbody>
     </table>
@@ -48,19 +50,22 @@
     var rates = {};
     var investment = 92;
     var amounts = {
-      "btc": 0.02225,
-      "ans": 12,
-      "bat": 105
+      "bitcoin": 0.02225,
+      "neo": 12,
+      "basic-attention-token": 105,
+      "tenx": 63
     };
     var originalRates = {
-      "btc": 449.438202247,
-      "ans": 7.66666666667,
-      "bat": 0.16
+      "bitcoin": 449.438202247,
+      "neo": 7.66666666667,
+      "basic-attention-token": 0.16,
+      "tenx": 0.69
     };
     var originalValues = {
-      "btc": amounts["btc"] * originalRates["btc"],
-      "ans": amounts["ans"] * originalRates["ans"],
-      "bat": amounts["bat"] * originalRates["bat"]
+      "bitcoin": amounts["bitcoin"] * originalRates["bitcoin"],
+      "neo": amounts["neo"] * originalRates["neo"],
+      "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"],
+      "tenx": amounts["tenx"] * originalRates["tenx"]
     }
     var totalOriginalValue = 0;
 
@@ -85,11 +90,11 @@
 
     getRate = function(pair) {
       var req = new XMLHttpRequest();
-      req.open('GET', 'https://api.cryptonator.com/api/ticker/' + pair + '-eur', true);
+      req.open('GET', 'https://api.coinmarketcap.com/v1/ticker/' + pair + '/?convert=EUR', true);
       req.onload = function() {
         if (this.status >= 200 && this.status < 400) {
           var data = JSON.parse(this.response);
-          if(data.success) rates[pair] = data.ticker.price;
+          if(!data.error) rates[pair] = data[0].price_eur;
           else rates[pair] = -1;
         } else {
           console.log("We reached our target server, but it returned an error");
@@ -167,7 +172,7 @@
       else setTimeout(function() {
         getRates();
         fillIn();
-      }, 10000);
+      }, 2000);
     }
     fillIn();
     </script>

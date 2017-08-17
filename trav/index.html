@@ -33,6 +33,8 @@
         </tr>
         <tr id="tenx">
         </tr>
+        <tr id="basic-attention-token">
+        </tr>
       </tbody>
     </table>
 
@@ -48,19 +50,22 @@
     var rates = {};
     var investment = 19175;
     var amounts = {
-      "ethereum": 11.76261751 + 33.03598622,
+      "ethereum": 11.76261751 + 28.03598622,
       "neo": 984,
-      "tenx": 5995.129154
+      "tenx": 5995.129154,
+      "basic-attention-token": 8312.5
     };
     var originalRates = {
       "ethereum": 168.545,
       "neo": 8.32725060827,
-      "tenx": 0.5722
+      "tenx": 0.5722,
+      "basic-attention-token": 14.7
     };
     var originalValues = {
       "ethereum": amounts["ethereum"] * originalRates["ethereum"],
       "neo": amounts["neo"] * originalRates["neo"],
       "tenx": amounts["tenx"] * originalRates["tenx"],
+      "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"]
     }
     var totalOriginalValue = 0;
 
