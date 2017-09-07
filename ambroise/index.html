@@ -37,6 +37,10 @@
         </tr>
         <tr id="tenx">
         </tr>
+        <tr id="golem-network-tokens">
+        </tr>
+        <tr id="civic">
+        </tr>
       </tbody>
     </table>
 
@@ -56,19 +60,23 @@
     var investment = 5000 + 3845;
     var amounts = {
       "bitcoin": 1.50543,
-      "ethereum": 123.972370081,
+      "ethereum": 113.972370081,
       //"nvo": 0,
       "basic-attention-token": 29337.05135752,
       "neo": 0,
-      "tenx": 17206.08147656
+      "tenx": 17206.08147656,
+      "golem-network-tokens": 4842.28,
+      "civic": 4151.116
     };
     var originalRates = {
       "bitcoin": 2229.657,
-      "ethereum":273.3471,
+      "ethereum": 273.3471,
       //"nvo": 133.5000,
       "basic-attention-token": 0.1642388,
       "neo": 4.27597300827,
-      "tenx": 0.6716
+      "tenx": 0.6716,
+      "golem-network-tokens": 0.2478,
+      "civic": 0.312
     };
     var originalValues = {
       "bitcoin": amounts["bitcoin"] * originalRates["bitcoin"],
@@ -76,7 +84,9 @@
       //"nvo": amounts["nvo"] * originalRates["nvo"],
       "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"],
       "tenx": amounts["tenx"] * originalRates["tenx"],
-      "neo": amounts["neo"] * originalRates["neo"]
+      "neo": amounts["neo"] * originalRates["neo"],
+      "golem-network-tokens": amounts["golem-network-tokens"] * originalRates["golem-network-tokens"],
+      "civic": amounts["civic"] * originalRates["civic"]
     }
     var totalOriginalValue = 0;
 
