@@ -59,9 +59,9 @@
     var rates = {};
     var investment = 5000 + 3845;
     var amounts = {
-      "bitcoin": 1.50543,
+      "bitcoin": 1.20543,
       "ethereum": 113.972370081,
-      //"nvo": 0,
+      "bitcoin-cash": 1.701,
       "basic-attention-token": 29337.05135752,
       "neo": 0,
       "tenx": 17206.08147656,
@@ -71,7 +71,7 @@
     var originalRates = {
       "bitcoin": 2229.657,
       "ethereum": 273.3471,
-      //"nvo": 133.5000,
+      "bitcoin-cash": 0,
       "basic-attention-token": 0.1642388,
       "neo": 4.27597300827,
       "tenx": 0.6716,
@@ -81,7 +81,7 @@
     var originalValues = {
       "bitcoin": amounts["bitcoin"] * originalRates["bitcoin"],
       "ethereum": amounts["ethereum"] * originalRates["ethereum"],
-      //"nvo": amounts["nvo"] * originalRates["nvo"],
+      "bitcoin-cash": amounts["bitcoin-cash"] * originalRates["bitcoin-cash"],
       "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"],
       "tenx": amounts["tenx"] * originalRates["tenx"],
       "neo": amounts["neo"] * originalRates["neo"],
@@ -143,7 +143,13 @@
         var oriWorth = originalRates[k] * amounts[k];
         var curWorth = rates[k] * amounts[k];
         var won = (curWorth)-(oriWorth);
-        var perWon = won/oriWorth*100;
+        var perWon;
+        if(oriWorth > 0) {
+          perWon = won/oriWorth*100;
+        } else {
+          perWon = 0;
+        }
+
 
         var amountStr = amounts[k].toString().slice(0, 6);
         var oriRatesStr = originalRates[k].toString().slice(0, 6);
