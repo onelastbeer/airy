@@ -41,6 +41,8 @@
         </tr>
         <tr id="raiblocks">
         </tr>
+        <tr id="etherparty">
+        </tr>
       </tbody>
     </table>
 
@@ -56,13 +58,14 @@
     var rates = {};
     var investment = 29175;
     var amounts = {
-      "ethereum": 112.65031139,
+      "ethereum": 95.648932776,
       "neo": 0,
       "tenx": 9269.31766065 ,
       "basic-attention-token": 17062.5,
       "golem-network-tokens": 4842.28,
       "civic": 4151.116,
-      "raiblocks": 633.70619915
+      "raiblocks": 633.70619915,
+      "etherparty": 30000
     };
     var originalRates = {
       "ethereum": 289.6342,
@@ -71,7 +74,8 @@
       "basic-attention-token": 0.1421,
       "golem-network-tokens": 0.2478,
       "civic": 0.312,
-      "raiblocks": 4.1285
+      "raiblocks": 4.1285,
+      "etherparty": 0.092
     };
     var originalValues = {
       "ethereum": amounts["ethereum"] * originalRates["ethereum"],
@@ -80,7 +84,8 @@
       "basic-attention-token": amounts["basic-attention-token"] * originalRates["basic-attention-token"],
       "golem-network-tokens": amounts["golem-network-tokens"] * originalRates["golem-network-tokens"],
       "civic": amounts["civic"] * originalRates["civic"],
-      "raiblocks": amounts["raiblocks"] * originalRates["raiblocks"]
+      "raiblocks": amounts["raiblocks"] * originalRates["raiblocks"],
+      "etherparty": amounts["etherparty"] * originalRates["etherparty"]
     }
     var totalOriginalValue = 0;
 
